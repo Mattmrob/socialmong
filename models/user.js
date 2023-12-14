@@ -15,8 +15,7 @@ userSchema = new Schema({
         unique: true,
         required: true,
         match: /.+\@.+\..+/,
-        // regex solution from https://masteringjs.io/tutorials/mongoose/mongoose-validate-unique-email
-        // 'look for anything followed by a @ followed by anything followed by a . followed by anthing'
+        // 'look for anything followed by a @ followed by anything followed by a . followed by anything'
     },
     thoughts: [
         {
@@ -49,3 +48,7 @@ userSchema
 const User = model('User', userSchema);
 
 module.exports = User;
+
+// CREDIT: regex email validation pattern created by masteringjs.io @:
+// https://masteringjs.io/tutorials/mongoose/mongoose-validate-unique-email
+
