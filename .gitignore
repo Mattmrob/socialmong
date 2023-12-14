@@ -1,0 +1,13 @@
+*.env
+*.o
+/bin/
+/out/
+/target/
+**/log
+*.tmp
+*.lock
+idea/
+/node_modules/
+*-lock.json
+.DS_Store
+/logs/

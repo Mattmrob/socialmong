@@ -1,1 +1,1 @@
-# socialmong
+# socialmong networking app - placeholder
