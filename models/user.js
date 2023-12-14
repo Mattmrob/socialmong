@@ -13,6 +13,7 @@ userSchema = new Schema({
         required: true,
         match: /.+\@.+\..+/,
         // regex solution from https://masteringjs.io/tutorials/mongoose/mongoose-validate-unique-email
+        // 'look for anything followed by a @ followed by anything followed by a . followed by anthing'
     },
     thoughts: [
         {
@@ -26,26 +27,21 @@ userSchema = new Schema({
             ref: 'User',
           },
     ],
+},
+{
+    toJSON: {
+      virtuals: true,
+    },
+    id: false,
+  }
+);
 
+userSchema
+.virtual('friendCount')
+.get(function (){
+    return `${this.friends.length}`
 });
 
-/* User
+const User = model('User', userSchema);
 
-username
-
-String
-Unique
-Required
-Trimmed
-email
-
-String
-Required
-Unique
-Must match a valid email address (look into Mongoose's matching validation)
-thoughts
-
-Array of _id values referencing the Thought model
-friends
-
-Array of _id values referencing the User model (self-reference) */
+module.exports = User;
