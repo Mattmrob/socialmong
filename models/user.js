@@ -1,5 +1,8 @@
 const { Schema, model } = require('mongoose');
 
+// ------------ USER SCHEMA ------------
+// contains user data as well as a user's comments created (reference thoughts)
+// and the user's friends (references itself)
 userSchema = new Schema({
     username: {
         type: String, 
@@ -36,6 +39,7 @@ userSchema = new Schema({
   }
 );
 
+// virtual to return length of user's friend's list on query
 userSchema
 .virtual('friendCount')
 .get(function (){
