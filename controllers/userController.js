@@ -24,7 +24,7 @@ module.exports = {
         }
     },
 
-    // Get a single user
+    // Get a single user by id
     async getSingleUser(req, res) {
     try {
         const user = await User.findOne({ _id: req.params.userId })
@@ -41,7 +41,7 @@ module.exports = {
     }
     },
 
-    // update single user
+    // update single user by id
     async updateUser(req, res) {
         try {
             const user = await User.findOneAndUpdate(
@@ -51,7 +51,7 @@ module.exports = {
             );
 
             if (!user) {
-            return res.status(404).json({ message: 'No application with this id!' });
+            return res.status(404).json({ message: 'No user with this id!' });
             }
 
             res.json(user);
@@ -61,7 +61,7 @@ module.exports = {
         }
         },
 
-    // Delete a user and associated thoughts
+    // Delete a user and associated thoughts by id
     async deleteUser(req, res) {
         try {
         const user = await User.findOneAndDelete({ _id: req.params.userId });
@@ -71,7 +71,7 @@ module.exports = {
         }
 
         await Thought.deleteMany({ _id: { $in: user.thoughts } });
-        
+
         res.json({ message: 'User and associated thoughts deleted!' })
         } catch (err) {
         res.status(500).json(err);
@@ -80,7 +80,7 @@ module.exports = {
 
     // --------- FRIENDS LIST ---------
 
-    // Add a friend to a user
+    // Add a friend to a user by id
     async addFriend(req, res) {
 
         try {
@@ -102,7 +102,7 @@ module.exports = {
         }
     },
 
-    // Remove a friend to a user
+    // Remove a friend to a user by id
     async removeFriend(req, res) {
         try {
         const user = await User.findOneAndUpdate(
@@ -114,7 +114,7 @@ module.exports = {
         if (!user) {
             return res
             .status(404)
-            .json({ message: 'No student found with that ID' });
+            .json({ message: 'No user found with that ID' });
         }
 
         res.json(user);

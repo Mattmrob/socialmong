@@ -27,7 +27,7 @@ module.exports = {
             );
 
             if (!user) {
-            return res.status(404).json({ message: 'No application with this id!' });
+            return res.status(404).json({ message: 'No user with this id!' });
             }
 
         res.json(thought);
@@ -36,54 +36,52 @@ module.exports = {
         }
     },
 
-    // Get a single user
-    async getSingleUser(req, res) {
+    // Get a single thought by id
+    async getSingleThought(req, res) {
     try {
-        const user = await User.findOne({ _id: req.params.userId })
+        const thought = await Thought.findOne({ _id: req.params.thoughtId })
         .select('-__v')
-        .populate('friends');
 
-        if (!user) {
-        return res.status(404).json({ message: 'No user with that ID' });
+        if (!thought) {
+        return res.status(404).json({ message: 'No thought with that ID' });
         }
 
-        res.json(user);
+        res.json(thought);
     } catch (err) {
         res.status(500).json(err);
     }
     },
 
-    // update single user
-    async updateUser(req, res) {
+    // update single thought by id
+    async updateThought(req, res) {
         try {
-            const user = await User.findOneAndUpdate(
-            { _id: req.params.userId },
+            const thought = await Thought.findOneAndUpdate(
+            { _id: req.params.thoughtId },
             { $set: req.body },
             { runValidators: true, new: true }
             );
 
-            if (!user) {
-            return res.status(404).json({ message: 'No application with this id!' });
+            if (!thought) {
+            return res.status(404).json({ message: 'No thought with this id!' });
             }
 
-            res.json(user);
+            res.json(thought);
         } catch (err) {
             console.log(err);
             res.status(500).json(err);
         }
         },
 
-    // Delete a user and associated apps
-    async deleteUser(req, res) {
+    // Delete a thought by id
+    async deleteThought(req, res) {
         try {
-        const user = await User.findOneAndDelete({ _id: req.params.userId });
+        const thought = await Thought.findOneAndDelete({ _id: req.params.thoughtId });
 
-        if (!user) {
-            return res.status(404).json({ message: 'No user with that ID' });
+        if (!thought) {
+            return res.status(404).json({ message: 'No thought with that ID' });
         }
 
-        await Application.deleteMany({ _id: { $in: user.applications } });
-        res.json({ message: 'User and associated apps deleted!' })
+        res.json({ message: 'Thought deleted!' })
         } catch (err) {
         res.status(500).json(err);
         }
