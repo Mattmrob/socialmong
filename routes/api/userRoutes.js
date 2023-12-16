@@ -1,11 +1,21 @@
 const router = require('express').Router();
+const {
+    getUsers,
+    createUser,
+    getSingleUser,
+    updateUser,
+    deleteUser,
+  } = require('../../controllers/userController');
 
-// Import user controllers here
 
-// use user controllers here
-// router.route('/')
-// .get("this is where getAllUsers would go")
-// .post("this is where createNewUser would go");
+  router.route('/')
+  .get(getUsers)
+  .post(createUser);
+
+  router.route('/:userId')
+  .get(getSingleUser)
+  .put(updateUser)
+  .delete(deleteUser);
 
 // router.route('/:userId').get("this is where getSingleUserById would go");
 
