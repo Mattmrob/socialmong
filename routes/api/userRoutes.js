@@ -17,8 +17,6 @@ const {
   .put(updateUser)
   .delete(deleteUser);
 
-// router.route('/:userId').get("this is where getSingleUserById would go");
-
 // router.route('/:userId/friends/:friendId')
 // .get("this is where addNewFriend would go")
 // .delete("this is where removeFriend would go");
