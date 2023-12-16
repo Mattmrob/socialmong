@@ -87,46 +87,46 @@ module.exports = {
         }
     },
 
-    // --------- FRIENDS LIST ---------
+    // --------- REACTIONS ---------
 
-    // Add a friend to a user
-    async addFriend(req, res) {
+    // Add a reaction to a thought by id
+    async addReaction(req, res) {
 
         try {
-        const user = await User.findOneAndUpdate(
-            { _id: req.params.userId },
-            { $addToSet: { friends: req.params.friendId } },
+        const thought = await Thought.findOneAndUpdate(
+            { _id: req.params.thoughtId },
+            { $addToSet: { reactions: { username: req.body.username, reactionBody: req.body.reactionBody } } },
             { runValidators: true, new: true }
         );
 
-        if (!user) {
+        if (!thought) {
             return res
             .status(404)
-            .json({ message: 'No user found with that ID' });
+            .json({ message: 'No thought found with that ID' });
         }
 
-        res.json(user);
+        res.json(thought);
         } catch (err) {
         res.status(500).json(err);
         }
     },
 
-    // Remove a friend to a user
-    async removeFriend(req, res) {
+    // Remove a reaction by its reaction id
+    async removeReaction(req, res) {
         try {
-        const user = await User.findOneAndUpdate(
-            { _id: req.params.userId },
-            { $pull: { friends: req.params.friendId } },
+        const thought = await Thought.findOneAndUpdate(
+            { _id: req.params.thoughtId },
+            { $pull: { reactions: req.params.reactionId } },
             { runValidators: true, new: true }
         );
 
-        if (!user) {
+        if (!thought) {
             return res
             .status(404)
-            .json({ message: 'No student found with that ID' });
+            .json({ message: 'No thought found with that ID' });
         }
 
-        res.json(user);
+        res.json(thought);
         } catch (err) {
         res.status(500).json(err);
         }
