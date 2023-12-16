@@ -23,8 +23,4 @@ const {
   .put(addFriend)
   .delete(removeFriend);
 
-// router.route('/:userId/friends/:friendId')
-// .get("this is where addNewFriend would go")
-// .delete("this is where removeFriend would go");
-
 module.exports = router;

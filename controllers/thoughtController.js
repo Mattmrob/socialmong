@@ -22,7 +22,7 @@ module.exports = {
         // push set id to user array
         const user = await User.findOneAndUpdate(
             { username: req.body.username },
-            { $addToSet: { thoughts: req.body._id } },
+            { $addToSet: { thoughts: thought._id } },
             { runValidators: true, new: true }
             );
 
