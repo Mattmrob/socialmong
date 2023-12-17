@@ -3,10 +3,10 @@ const { Schema, model } = require('mongoose');
 // ------------ REACTION SCHEMA ------------
 // used for user responses to thoughts - not a model
 reactionSchema = new Schema ({
-    reactionId: {
-        type: Schema.Types.ObjectId,
-        default: new Schema.Types.ObjectId,
-    },
+    // reactionId: {
+    //     type: Schema.Types.ObjectId,
+    //     default: new Schema.Types.ObjectId,
+    // },
     reactionBody: {
         type: String,
         required: true,
