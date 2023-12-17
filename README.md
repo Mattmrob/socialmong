@@ -10,7 +10,7 @@ Download this repository along with a code editing software such as Visual Studo
 
 ## Usage
 
-<a href="https://drive.google.com/file/d/1cQP0qVuhp1IBEsJhZGOPdJbgv1eRdsig/view">Click here for a video on how the api looks in action!</a>
+<a href="https://drive.google.com/file/d/1cQP0qVuhp1IBEsJhZGOPdJbgv1eRdsig/view">Click here for a video on how the api looks in action!</a></br>
 Video Length: ~ 5 minutes.
 
 Once installation is complete, open up your code editing software and run the server - with node you can do 'node index.js' or 'nodemon index.js' (if you have nodemon installed), just make sure you are in the right directory! Once running, the user can send different kinds of requests to their server to store and connect information. In my example video, I am using Postman to send GET, PUT, and DELETE requests to the running server.
@@ -22,45 +22,45 @@ Below are the routes you want to use to add or remove information from the datab
 
 Below are routes you can call to create, update, or delete information related directly to generated users.
 
-• localhost:3001/api/users
-  GET REQUEST: Lists all created users, their usernames, emails, ids for themeselves, ids for their thoughts, and ids for their friends + a total friend count.
-  POST REQUEST: Create a new user! Make sure to pass a 'username' and a valid 'email' in the request's body - the user will be created with a blank thought list, blank friends list, and a randomly generated id.
+• localhost:3001/api/users </br>
+  GET REQUEST: Lists all created users, their usernames, emails, ids for themeselves, ids for their thoughts, and ids for their friends + a total friend count. </br>
+  POST REQUEST: Create a new user! Make sure to pass a 'username' and a valid 'email' in the request's body - the user will be created with a blank thought list, blank friends list, and a randomly generated id. 
 
-• localhost:3001/api/users/:userId
-  (':userId' is where you would put a specific user's _id value)
-  GET REQUEST: Get a specific user with a matching id as the one you put into the url of the request. This GET is also special, as it list the details of all of that user's thoughts and friends.
-  PUT REQUEST: Update the user that matches the id you put into the url of the request. Make sure to pass what you would like changed in the body of your request!
+• localhost:3001/api/users/:userId </br>
+  (':userId' is where you would put a specific user's _id value) </br>
+  GET REQUEST: Get a specific user with a matching id as the one you put into the url of the request. This GET is also special, as it list the details of all of that user's thoughts and friends. </br>
+  PUT REQUEST: Update the user that matches the id you put into the url of the request. Make sure to pass what you would like changed in the body of your request! </br>
   DELETE REQUEST: Delete user who matches the id you put into the url of the request. This will also delete all of their associated thoughts (but not their reactions!).
 
-• localhost:3001/api/users/:userId/friends/:friendId
-  (':friendId' is where you would put the specific user's _id value you would like added or removed)
-  POST: Adds another user's id to the targeted user's friend's list! :userId is the targeted user, :friendId should be the user you want to add.
-  DELETE: Removes a user from the targeted user's friends list. :userId is the targeted user, :friendId is the user you want to remove.
+• localhost:3001/api/users/:userId/friends/:friendId </br>
+  (':friendId' is where you would put the specific user's _id value you would like added or removed) </br>
+  POST: Adds another user's id to the targeted user's friend's list! :userId is the targeted user, :friendId should be the user you want to add. </br>
+  DELETE: Removes a user from the targeted user's friends list. :userId is the targeted user, :friendId is the user you want to remove. </br>
 
 
 ### ROUTES: Thoughts and Reactions
 
 Thoughts function similarly to posts on other popular social apis, and can contain reactions, which function similarly to comments
 
-• localhost:3001/api/thoughts
-  GET: Retreive all thoughts. Thoughts contain a timestamp as to when they were created, posses a unique id, the name of a user who created them, a string of text for its body content, and an array of reactions.
-  POST: Create a thought! Requires a 'username' and 'thoughtText' in the request's body. Id will be generated uniquely and all thoughts start with no reactions.
+• localhost:3001/api/thoughts </br>
+  GET: Retreive all thoughts. Thoughts contain a timestamp as to when they were created, posses a unique id, the name of a user who created them, a string of text for its body content, and an array of reactions. </br>
+  POST: Create a thought! Requires a 'username' and 'thoughtText' in the request's body. Id will be generated uniquely and all thoughts start with no reactions. </br>
 
-• localhost:3001/api/thoughts/:thoughtId
+• localhost:3001/api/thoughts/:thoughtId </br>
   (':thoughtId' is where you would put the _id of a specific thought you want to target)
-  GET: View a specific thought based on the _id you put into the request's url.
-  PUT: Update a specific thought based on the _id you put into the request's url. Remember to pass 'username' or 'thoughtText' values in the request's body depending on what you are updating!
-  DELETE: Delete a specific thought based on the _id you put into the request's url.
+  GET: View a specific thought based on the _id you put into the request's url. </br>
+  PUT: Update a specific thought based on the _id you put into the request's url. Remember to pass 'username' or 'thoughtText' values in the request's body depending on what you are updating! </br>
+  DELETE: Delete a specific thought based on the _id you put into the request's url. </br>
 
-• localhost:3001/api/thoughts/:thoughtId/reactions
-  POST: Create a reaction to the specific thought based on the _id you put into the request's url. Reactions pass 'username' and 'reactionBody' in the request's body for creation. reactions generate their own id and created timestamp, and are added to the targeted thought's 'reactions' array.
+• localhost:3001/api/thoughts/:thoughtId/reactions </br>
+  POST: Create a reaction to the specific thought based on the _id you put into the request's url. Reactions pass 'username' and 'reactionBody' in the request's body for creation. reactions generate their own id and created timestamp, and are added to the targeted thought's 'reactions' array. </br>
 
-• localhost:3001/api/thoughts/:thoughtId/reactions/:reactionId
-  DELETE: Delete a specific reaction within a specific thought. :thoughtId targets the id of the thought while :reactionId targets the id of the reaction you wish to delete.
+• localhost:3001/api/thoughts/:thoughtId/reactions/:reactionId </br>
+  DELETE: Delete a specific reaction within a specific thought. :thoughtId targets the id of the thought while :reactionId targets the id of the reaction you wish to delete. </br>
 
 ## Wrap-Up
 
-And thats the api! Unfortunatly, it does not have any login systems, passwords, or user verification - but as it currently is, the api can group and connect information between users and posts as needed.
+And thats the api! Unfortunately, it does not have any login systems, passwords, or user verification - but as it currently is, the api can group and connect information between users and posts as needed.
 
 This project was created by Matthew Roberts through the UC Berkely Fullstack Bootcamp.
 
